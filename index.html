@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pokédex minimalista y moderna con animaciones fluidas, consumiendo exclusivamente PokeAPI.co con todos los Pokémon existentes.">
+  <title>PokéDex Minimal — Todos los Pokémon (PokeAPI)</title>
+  
+  <!-- Google Fonts: Pixelify Sans, Press Start 2P, Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css?v=3.0">
+  <link rel="stylesheet" href="css/game.css?v=3.0">
+</head>
+<body class="is-landing-view">
+  <!-- Ambient background light blooms -->
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
+
+  <!-- ===============================================================
+       PANTALLA DE INICIO: ENTRADA EXCLUSIVA CON DOS BOTONES (POKÉDEX / TCG)
+       =============================================================== -->
+  <section class="portal-landing-container" id="viewLanding">
+    <div class="portal-backdrop-art" style="background-image: url('assets/portal_bg.jpg');"></div>
+    <div class="portal-overlay-gradient"></div>
+    
+    <div class="portal-content-wrapper">
+      <div class="portal-header">
+        <div class="portal-logo-glow">
+          <svg class="portal-pokeball-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="6" class="ball-outer"/>
+            <path d="M4 50h92" stroke="currentColor" stroke-width="6"/>
+            <path d="M4 50a46 46 0 0 1 92 0" fill="#ef4444" fill-opacity="0.95"/>
+            <circle cx="50" cy="50" r="14" fill="#0b0f17" stroke="currentColor" stroke-width="6"/>
+            <circle cx="50" cy="50" r="6" fill="#38bdf8" class="ball-core"/>
+          </svg>
+        </div>
+        <div class="portal-kicker-badge">
+          <span class="live-dot"></span>
+          <span>POKÉMON EXPERIENCIA DEFINITIVA</span>
+        </div>
+        <h1 class="portal-main-title">ELIGE TU <span class="gradient-text">DESTINO</span></h1>
+        <p class="portal-main-desc">Dos experiencias legendarias en una sola aplicación. Selecciona qué aventura deseas iniciar:</p>
+      </div>
+
+      <!-- LOS DOS BOTONES / TARJETAS PRINCIPALES -->
+      <div class="portal-cards-grid">
+        <!-- BOTÓN 1: POKÉDEX -->
+        <div class="portal-card portal-card-pokedex" id="btnPortalPokedex" role="button" tabindex="0" aria-label="Entrar a la Pokédex Nacional">
+          <div class="portal-card-glow"></div>
+          <div class="portal-card-media">
+            <img src="assets/pokedex_portal.jpg" alt="Pokédex Nacional Interactiva" class="portal-card-img" />
+            <div class="portal-card-overlay"></div>
+            <div class="portal-card-badge-wrap">
+              <span class="portal-badge badge-pokedex">
+                <span class="badge-dot dot-cyan"></span>
+                POKÉDEX NACIONAL
+              </span>
+            </div>
+          </div>
+          <div class="portal-card-body">
+            <div class="portal-card-head">
+              <span class="portal-category-tag">BASE DE DATOS COMPLETA</span>
+              <h2 class="portal-card-title">POKÉDEX <span class="text-cyan">OFICIAL</span></h2>
+              <p class="portal-card-desc">Explora más de 1,025 Pokémon con arte clásico Ken Sugimori 1996, modelos 3D modernos, variantes Shiny, gritos originales y estadísticas competitivas.</p>
+            </div>
+            
+            <div class="portal-features-list">
+              <span class="portal-feature-pill">📖 1,025+ Pokémon</span>
+              <span class="portal-feature-pill">🎨 Clásico & 3D</span>
+              <span class="portal-feature-pill">✨ Variantes Shinys</span>
+              <span class="portal-feature-pill">🧬 Árbol Evolutivo</span>
+            </div>
+
+            <button type="button" class="portal-action-btn btn-pokedex-cta" tabindex="-1">
+              <span>ENTRAR A LA POKÉDEX</span>
+              <svg class="portal-btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- BOTÓN 2: ZONA TCG -->
+        <div class="portal-card portal-card-tcg" id="btnPortalTcg" role="button" tabindex="0" aria-label="Entrar a la Zona TCG y Batallas">
+          <div class="portal-card-glow"></div>
+          <div class="portal-card-media">
+            <img src="assets/tcg_portal.jpg" alt="Zona TCG Pokémon y Estadio de Batalla" class="portal-card-img" />
+            <div class="portal-card-overlay"></div>
+            <div class="portal-card-badge-wrap">
+              <span class="portal-badge badge-tcg">
+                <span class="badge-dot dot-amber"></span>
+                JUEGO DE CARTAS & COMBATES
+              </span>
+            </div>
+          </div>
+          <div class="portal-card-body">
+            <div class="portal-card-head">
+              <span class="portal-category-tag tag-tcg">ESTADIO & COLECCIONISMO</span>
+              <h2 class="portal-card-title">ZONA <span class="text-amber">TCG STADIUM</span></h2>
+              <p class="portal-card-desc">Abre sobres con cartas holográficas 3D, colecciona Pokémon raros, crea tu mazo invencible de 3 criaturas y combate en el estadio por turnos.</p>
+            </div>
+            
+            <div class="portal-features-list">
+              <span class="portal-feature-pill">🎁 Apertura de Sobres</span>
+              <span class="portal-feature-pill">🃏 Constructor de Mazos</span>
+              <span class="portal-feature-pill">⚔️ Combates con Sprites</span>
+              <span class="portal-feature-pill">🪙 PokéCoins y Caramelos</span>
+            </div>
+
+            <button type="button" class="portal-action-btn btn-tcg-cta" tabindex="-1">
+              <span>ENTRAR A ZONA TCG</span>
+              <svg class="portal-btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="portal-footer-status">
+        <span class="footer-status-pill">
+          <span class="live-dot"></span>
+          Conectado en tiempo real con PokeAPI v2 & Cartas Oficiales
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Panel Lateral Desplegable Persistente (Izquierda) con 2 Botones Grandes -->
+  <aside class="pkmn-side-drawer is-collapsed" id="pkmnSideDrawer" aria-label="Navegación Principal" style="display: none;">
+    <div class="side-drawer-inner">
+      <div class="side-drawer-header">
+        <div class="side-brand-pill">
+          <span class="live-dot"></span>
+          <span class="side-brand-title">POKÉFAN CLUB</span>
+        </div>
+        <button type="button" class="side-drawer-collapse-btn" id="btnToggleSideDrawer" aria-label="Ocultar panel" title="Minimizar panel">
+          ◀
+        </button>
+      </div>
+
+      <!-- Los 2 Botones Grandes: POKÉDEX y ZONA TCG -->
+      <div class="side-drawer-buttons">
+        <!-- BOTÓN 1: POKÉDEX NACIONAL -->
+        <button type="button" class="side-nav-big-btn btn-side-pokedex main-nav-tab active" data-view="pokedex" id="sideBtnPokedex" title="Ir a la Pokédex Nacional">
+          <div class="side-btn-accent-bar"></div>
+          <div class="side-btn-icon-wrap icon-pokedex">
+            <span class="side-icon">📖</span>
+          </div>
+          <div class="side-btn-content">
+            <div class="side-btn-badge">BASE DE DATOS</div>
+            <strong class="side-btn-title">POKÉDEX</strong>
+            <span class="side-btn-desc">1.025+ Criaturas & Sprites</span>
+          </div>
+          <span class="side-btn-arrow">❯</span>
+        </button>
+
+        <!-- BOTÓN 2: ZONA TCG & COMBATE -->
+        <button type="button" class="side-nav-big-btn btn-side-tcg main-nav-tab" data-view="cartas" id="sideBtnTcg" title="Ir a la Zona TCG y Combates">
+          <div class="side-btn-accent-bar"></div>
+          <div class="side-btn-icon-wrap icon-tcg">
+            <span class="side-icon">🃏</span>
+          </div>
+          <div class="side-btn-content">
+            <div class="side-btn-badge badge-stadium">ARENA & MAZOS</div>
+            <strong class="side-btn-title">ZONA TCG</strong>
+            <span class="side-btn-desc">Sobres, Mazos y Batallas</span>
+          </div>
+          <span class="side-btn-arrow">❯</span>
+        </button>
+
+        <!-- Botón Compacto: Inicio -->
+        <button type="button" class="side-nav-compact-btn main-nav-tab" data-view="landing" id="sideBtnLanding" title="Volver al Menú Principal">
+          <span class="compact-icon">🏠</span>
+          <span class="compact-label">Menú de Inicio</span>
+        </button>
+      </div>
+
+      <div class="side-drawer-footer">
+        <span class="side-footer-text">PokeAPI v2 • En vivo</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Botón flotante para reabrir el panel si está minimizado -->
+  <button type="button" class="side-dock-reopen-btn" id="btnReopenSideDrawer" title="Abrir Menú de Navegación" style="display: none;">
+    <span class="reopen-icon">☰</span>
+    <span class="reopen-txt">MENÚ</span>
+  </button>
+
+  <!-- Header / Navigation Bar (Classic Pokédex Style - Limpio y despejado) -->
+  <header class="navbar" id="mainHeader" style="display: none;">
+    <div class="container navbar-inner">
+      <!-- Botón de apertura de panel lateral -->
+      <button type="button" class="nav-drawer-toggle-btn" id="btnHeaderMenuToggle" title="Abrir panel lateral (Pokédex & TCG)">
+        <span class="drawer-toggle-icon">☰</span>
+        <span class="drawer-toggle-text">MENÚ</span>
+      </button>
+
+      <!-- Pokédex Sensor Lights (Iconic Blue Camera Lens + 3 mini LEDs) -->
+      <div class="pokedex-sensor-bar" title="Sensor Óptico Pokédex">
+        <div class="pokedex-big-lens"></div>
+        <div class="pokedex-mini-leds">
+          <span class="pokedex-led led-red"></span>
+          <span class="pokedex-led led-yellow"></span>
+          <span class="pokedex-led led-green"></span>
+        </div>
+      </div>
+
+      <div class="brand-group" id="brandGroupHome" title="Ir al selector principal">
+        <div class="brand-logo" id="logoReload" title="Volver al menú de inicio">
+          <svg class="pokeball-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="46" stroke="#1e293b" stroke-width="8" class="ball-outer"/>
+            <path d="M4 50h92" stroke="#1e293b" stroke-width="8"/>
+            <path d="M4 50a46 46 0 0 1 92 0" fill="#dc2626"/>
+            <path d="M4 50a46 46 0 0 0 92 0" fill="#ffffff"/>
+            <circle cx="50" cy="50" r="14" fill="#ffffff" stroke="#1e293b" stroke-width="8"/>
+            <circle cx="50" cy="50" r="6" fill="#38bdf8" class="ball-core"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title"><span class="pokemon-brand-yellow">POKÉ</span><span class="pokemon-brand-blue">DEX</span></div>
+          <div class="brand-badge">
+            <span class="live-dot"></span>
+            <span id="apiStatusText">PokeAPI v2 • 1,351 Pokémon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs: INICIO / POKÉDEX / ZONA TCG -->
+      <nav class="main-sections-nav" aria-label="Secciones">
+        <button class="main-nav-tab" data-view="landing" id="tabLanding" title="Volver al menú de inicio">
+          <span class="tab-icon">🏠</span>
+          <span class="nav-tab-label">INICIO</span>
+        </button>
+        <button class="main-nav-tab active" data-view="pokedex" id="tabPokedex">
+          <span class="tab-icon">📖</span>
+          <span class="nav-tab-label">POKÉDEX</span>
+        </button>
+        <button class="main-nav-tab" data-view="cartas" id="tabCartas">
+          <span class="tab-icon">🃏</span>
+          <span class="nav-tab-label">ZONA TCG</span>
+        </button>
+      </nav>
+
+      <!-- Quick Search Bar -->
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Buscar por nombre o número (ej: Pikachu, 25)..." 
+          autocomplete="off" 
+          spellcheck="false"
+        />
+        <button id="clearSearchBtn" class="clear-btn" aria-label="Limpiar búsqueda" style="display: none;">
+          &times;
+        </button>
+        <span class="search-shortcut" title="Presiona '/' para buscar">/</span>
+      </div>
+
+      <!-- Actions -->
+      <div class="nav-actions">
+        <!-- Selector de Vista: Normal / Shinys / Animados -->
+        <div class="view-selector">
+          <select id="viewModeSelect" aria-label="Modo de vista de los Pokémon">
+            <option value="default" selected>🎨 Clásico 1996 (Ken Sugimori)</option>
+            <option value="modern">🖼️ Render Moderno 3D</option>
+            <option value="shiny">✨ Todos Shinys</option>
+            <option value="animated">🎬 Animados</option>
+            <option value="shiny-animated">✨🎬 Shiny Animados</option>
+          </select>
+        </div>
+
+        <button id="favFilterBtn" class="nav-btn fav-toggle" title="Ver solo favoritos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-star">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          <span class="btn-label">Favoritos</span>
+          <span class="fav-count-badge" id="favCountBadge">0</span>
+        </button>
+
+        <div class="sort-selector">
+          <select id="sortSelect" aria-label="Ordenar pokémon">
+            <option value="id-asc">Número: Menor a Mayor</option>
+            <option value="id-desc">Número: Mayor a Menor</option>
+            <option value="name-asc">Nombre: A - Z</option>
+            <option value="name-desc">Nombre: Z - A</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Control Filters & Generations -->
+  <section class="controls-section" id="controlsSection" style="display: none;">
+    <div class="container">
+      <!-- Generation Pills -->
+      <div class="filters-header">
+        <span class="filter-label">Generación:</span>
+        <div class="pills-scroll" id="genPillsContainer">
+          <button class="pill-btn active" data-gen="all">Todas (1-9)</button>
+          <button class="pill-btn" data-gen="1">Gen 1 <span class="gen-range">1-151</span></button>
+          <button class="pill-btn" data-gen="2">Gen 2 <span class="gen-range">152-251</span></button>
+          <button class="pill-btn" data-gen="3">Gen 3 <span class="gen-range">252-386</span></button>
+          <button class="pill-btn" data-gen="4">Gen 4 <span class="gen-range">387-493</span></button>
+          <button class="pill-btn" data-gen="5">Gen 5 <span class="gen-range">494-649</span></button>
+          <button class="pill-btn" data-gen="6">Gen 6 <span class="gen-range">650-721</span></button>
+          <button class="pill-btn" data-gen="7">Gen 7 <span class="gen-range">722-809</span></button>
+          <button class="pill-btn" data-gen="8">Gen 8 <span class="gen-range">810-905</span></button>
+          <button class="pill-btn" data-gen="9">Gen 9 <span class="gen-range">906-1025</span></button>
+          <button class="pill-btn" data-gen="forms">Especiales <span class="gen-range">1026+</span></button>
+        </div>
+      </div>
+
+      <!-- Type Filter Pills -->
+      <div class="types-filter-wrapper">
+        <span class="filter-label">Tipo:</span>
+        <div class="types-pills" id="typePillsContainer">
+          <button class="type-pill-btn active" data-type="all">
+            <span class="type-dot all-dot"></span> Todos los tipos
+          </button>
+          <!-- Dynamically filled with pokeapi types + fallback presets -->
+        </div>
+      </div>
+
+      <!-- Status & Active Filter Tags Bar -->
+      <div class="results-bar">
+        <div class="results-stats">
+          <span id="resultsCounterText">Cargando Pokémon desde PokeAPI...</span>
+        </div>
+        <div class="active-chips" id="activeChipsContainer"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POKÉDEX VIEW -->
+  <div id="viewPokedex" style="display: none;">
+    <!-- Main Grid Section -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Pokémon Card Grid -->
+        <div class="pokemon-grid" id="pokemonGrid">
+          <!-- Skeleton cards placeholder -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+          <div class="empty-icon">🔍</div>
+          <h3>No se encontraron Pokémon</h3>
+          <p>Prueba con otro término de búsqueda o limpia los filtros seleccionados.</p>
+          <button class="btn-primary" id="resetFiltersBtn">Restablecer filtros</button>
+        </div>
+
+        <!-- Infinite scroll sentinel & Loading spinner -->
+        <div class="loading-trigger" id="loadingTrigger">
+          <div class="loader-spinner" id="bottomLoader">
+            <div class="spinner-circle"></div>
+            <span>Cargando más Pokémon...</span>
+          </div>
+          <button class="btn-secondary" id="manualLoadMoreBtn" style="display: none;">Cargar más</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ZONA TCG (Sobres, Crear Mazo y Batalla con Sprites) -->
+  <section id="viewCardGame" class="game-view-container" style="display: none;">
+    <div class="cardgame-viewport-wrapper">
+      <!-- Sub-Navigation Bar: ZONA TCG -->
+      <div class="cardgame-subnav-bar">
+        <div class="subnav-tabs">
+          <button class="cardgame-tab" data-subtab="packs" id="btnSubtabPacks">
+            <span class="subnav-tab-icon">🎁</span>
+            <span class="subnav-tab-text">SOBRES</span>
+          </button>
+          <button class="cardgame-tab" data-subtab="deck" id="btnSubtabDeck">
+            <span class="subnav-tab-icon">🃏</span>
+            <span class="subnav-tab-text">CREAR MAZO</span>
+          </button>
+          <button class="cardgame-tab active" data-subtab="battle" id="btnSubtabBattle">
+            <span class="subnav-tab-icon">⚔️</span>
+            <span class="subnav-tab-text">JUGAR BATALLA</span>
+          </button>
+        </div>
+
+        <div class="subnav-wallet">
+          <button class="cardgame-anim-toggle mode-gif" id="btnCardAnimModeToggle" title="Cambiar animación de las cartas (Showdown Animado o Arte Vintage Dinámico)">
+            <span class="anim-toggle-icon">✨</span>
+            <span class="anim-toggle-txt" id="cardAnimModeLabel">Cartas: <strong>Showdown Animadas 🎬</strong></span>
+          </button>
+          <div class="wallet-candy-badge" id="walletCandyBadge" title="Caramelos para subir de nivel a tus Pokémon">
+            <span>🍬 1</span> <span>🫐 2</span>
+          </div>
+          <div class="wallet-badge" id="walletBadge" title="Monedas ganadas en batallas">
+            <span class="coin-spin">🪙</span>
+            <span class="wallet-coins" id="walletCoinsDisplay">250</span>
+            <span class="wallet-label">PokéCoins</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-vistas ZONA TCG -->
+      <div class="cardgame-content-wrap">
+        <!-- 1. Apertura de Sobres (Diferentes Colecciones con Ilustraciones IA) -->
+        <div id="subviewPacks" class="cardgame-subview" style="display: none;">
+          <div id="packsMountPoint"></div>
+        </div>
+
+        <!-- 2. Crear Mazo (3 Ranuras + Todo tu Inventario) -->
+        <div id="subviewDeck" class="cardgame-subview" style="display: none;">
+          <div id="deckMountPoint"></div>
+        </div>
+
+        <!-- 3. Batalla Pokémon Actual con Sprites Animados Showdown -->
+        <div id="subviewBattle" class="cardgame-subview active">
+          <div id="gameMountPoint"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Scroll To Top Button -->
+  <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Volver arriba" title="Volver arriba">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="m18 15-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <!-- Interactive Detail Modal -->
+  <div class="modal-backdrop" id="pokemonModal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalPokemonName">
+      <!-- Modal Navigation buttons -->
+      <button class="modal-nav-btn prev-btn" id="modalPrevBtn" title="Anterior (Flecha Izquierda)" aria-label="Pokémon anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="modal-nav-btn next-btn" id="modalNextBtn" title="Siguiente (Flecha Derecha)" aria-label="Pokémon siguiente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      
+      <button class="modal-close-btn" id="modalCloseBtn" title="Cerrar (Esc)" aria-label="Cerrar modal">&times;</button>
+
+      <!-- Modal Content Body -->
+      <div class="modal-body" id="modalBody">
+        <!-- Rendered dynamically via js/pokedex.js -->
+        <div class="modal-loading-state">
+          <div class="spinner-circle"></div>
+          <p>Obteniendo detalles desde PokeAPI...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Modular Scripts -->
+  <script type="module" src="js/main.js?v=3.0"></script>
+</body>
+</html>

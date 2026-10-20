@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <defs>
+    <style>
+      .pkmn-sym {
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.14);
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .pkmn-sparkle-fill {
+        fill: rgba(255, 255, 255, 0.08);
+        stroke: rgba(255, 255, 255, 0.16);
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .pkmn-dot {
+        fill: rgba(255, 255, 255, 0.22);
+      }
+    </style>
+  </defs>
+
+  <!-- FILA 1 -->
+  <!-- Pokéball Principal (60, 60) -->
+  <g transform="translate(60, 60)">
+    <circle cx="0" cy="0" r="17" class="pkmn-sym" />
+    <path d="M -17 0 H -6 M 6 0 H 17" class="pkmn-sym" />
+    <circle cx="0" cy="0" r="5.5" class="pkmn-sym" />
+    <circle cx="0" cy="0" r="2.2" class="pkmn-dot" />
+  </g>
+
+  <!-- Brillo / Destello (180, 60) -->
+  <g transform="translate(180, 60)">
+    <path d="M 0 -15 Q 0 0 -15 0 Q 0 0 0 15 Q 0 0 15 0 Q 0 0 0 -15 Z" class="pkmn-sparkle-fill" />
+    <circle cx="0" cy="0" r="2" class="pkmn-dot" />
+  </g>
+
+  <!-- FILA 2 -->
+  <!-- Brillo / Destello (60, 180) -->
+  <g transform="translate(60, 180)">
+    <path d="M 0 -15 Q 0 0 -15 0 Q 0 0 0 15 Q 0 0 15 0 Q 0 0 0 -15 Z" class="pkmn-sparkle-fill" />
+    <circle cx="0" cy="0" r="2" class="pkmn-dot" />
+  </g>
+
+  <!-- Pokéball Principal (180, 180) -->
+  <g transform="translate(180, 180)">
+    <circle cx="0" cy="0" r="17" class="pkmn-sym" />
+    <path d="M -17 0 H -6 M 6 0 H 17" class="pkmn-sym" />
+    <circle cx="0" cy="0" r="5.5" class="pkmn-sym" />
+    <circle cx="0" cy="0" r="2.2" class="pkmn-dot" />
+  </g>
+
+  <!-- CENTRO: Brillo Estelar (120, 120) -->
+  <g transform="translate(120, 120) scale(0.75)">
+    <path d="M 0 -14 Q 0 0 -14 0 Q 0 0 0 14 Q 0 0 14 0 Q 0 0 0 -14 Z" class="pkmn-sparkle-fill" />
+    <circle cx="0" cy="0" r="2" class="pkmn-dot" />
+  </g>
+
+  <!-- BORDES HORIZONTALES: Mini Pokéballs alternadas (120, 0) y (120, 240) -->
+  <g transform="translate(120, 0) scale(0.65)">
+    <circle cx="0" cy="0" r="17" class="pkmn-sym" />
+    <path d="M -17 0 H -6 M 6 0 H 17" class="pkmn-sym" />
+    <circle cx="0" cy="0" r="5.5" class="pkmn-sym" />
+    <circle cx="0" cy="0" r="2.2" class="pkmn-dot" />
+  </g>
+  <g transform="translate(120, 240) scale(0.65)">
+    <circle cx="0" cy="0" r="17" class="pkmn-sym" />
+    <path d="M -17 0 H -6 M 6 0 H 17" class="pkmn-sym" />
+    <circle cx="0" cy="0" r="5.5" class="pkmn-sym" />
+    <circle cx="0" cy="0" r="2.2" class="pkmn-dot" />
+  </g>
+
+  <!-- BORDES VERTICALES: Mini Pokéballs alternadas (0, 120) y (240, 120) -->
+  <g transform="translate(0, 120) scale(0.65)">
+    <circle cx="0" cy="0" r="17" class="pkmn-sym" />
+    <path d="M -17 0 H -6 M 6 0 H 17" class="pkmn-sym" />
+    <circle cx="0" cy="0" r="5.5" class="pkmn-sym" />
+    <circle cx="0" cy="0" r="2.2" class="pkmn-dot" />
+  </g>
+  <g transform="translate(240, 120) scale(0.65)">
+    <circle cx="0" cy="0" r="17" class="pkmn-sym" />
+    <path d="M -17 0 H -6 M 6 0 H 17" class="pkmn-sym" />
+    <circle cx="0" cy="0" r="5.5" class="pkmn-sym" />
+    <circle cx="0" cy="0" r="2.2" class="pkmn-dot" />
+  </g>
+
+  <!-- ESQUINAS: Brillos para repetición continua perfecta -->
+  <g transform="translate(0, 0) scale(0.65)">
+    <path d="M 0 -14 Q 0 0 -14 0 Q 0 0 0 14 Q 0 0 14 0 Q 0 0 0 -14 Z" class="pkmn-sparkle-fill" />
+    <circle cx="0" cy="0" r="2" class="pkmn-dot" />
+  </g>
+  <g transform="translate(240, 0) scale(0.65)">
+    <path d="M 0 -14 Q 0 0 -14 0 Q 0 0 0 14 Q 0 0 14 0 Q 0 0 0 -14 Z" class="pkmn-sparkle-fill" />
+    <circle cx="0" cy="0" r="2" class="pkmn-dot" />
+  </g>
+  <g transform="translate(0, 240) scale(0.65)">
+    <path d="M 0 -14 Q 0 0 -14 0 Q 0 0 0 14 Q 0 0 14 0 Q 0 0 0 -14 Z" class="pkmn-sparkle-fill" />
+    <circle cx="0" cy="0" r="2" class="pkmn-dot" />
+  </g>
+  <g transform="translate(240, 240) scale(0.65)">
+    <path d="M 0 -14 Q 0 0 -14 0 Q 0 0 0 14 Q 0 0 14 0 Q 0 0 0 -14 Z" class="pkmn-sparkle-fill" />
+    <circle cx="0" cy="0" r="2" class="pkmn-dot" />
+  </g>
+</svg>
